@@ -21,7 +21,7 @@ export default function DashBoard() {
         });
         setData(res.data.users);
         console.log(res)
-        if (!res.status == 200) {
+        if (!res.status === 200) {
           navigate("/login")
         }
       } catch (error) {
