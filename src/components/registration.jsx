@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 export default function Registration() {
   const dispatch = useDispatch();
-  const { name, email, password } = useSelector((state) => state.user); // use your reducer key
+  const { name, email, password } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     dispatch(getInputValue({ field: e.target.name, value: e.target.value }));
   };
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,12 +19,15 @@ export default function Registration() {
     try {
       const res = await axios.post('https://authen-autho-server.onrender.com/api/auth/register', { name, email, password });
       alert(res.data.message || 'User registered successfully');
-      navigate("/login")
+      navigate("/login");
     } catch (error) {
       alert(error.response?.data?.error || 'Registration failed');
     }
   };
 
+  const handleGoToLogin = () => {
+    navigate("/login");
+  };
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -82,6 +85,13 @@ export default function Registration() {
                 className="w-full text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5"
               >
                 Create an account
+              </button>
+              <button
+                type="button"
+                onClick={handleGoToLogin}
+                className="w-full text-blue-600 border border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-700 dark:text-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 mt-2"
+              >
+                Login
               </button>
             </form>
           </div>
