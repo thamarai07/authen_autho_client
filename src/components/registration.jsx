@@ -17,7 +17,7 @@ export default function Registration() {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+      const res = await axios.post('https://authen-autho-server.onrender.com/api/auth/register', { name, email, password });
       alert(res.data.message || 'User registered successfully');
       navigate("/login")
     } catch (error) {

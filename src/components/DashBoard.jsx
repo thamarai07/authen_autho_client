@@ -14,7 +14,7 @@ export default function DashBoard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/getusers", {
+        const res = await axios.get("https://authen-autho-server.onrender.com/api/getusers", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
